@@ -8,7 +8,8 @@ Perencanaan Stratejik — Strategic Information Systems / IS-IT Strategic Planni
 
 ## Status
 - Milestone M0 — Scope & Baseline Definition: **LOCKED**
-- Next milestone: **M1 — Organizational Context**
+- Milestone M1 — Organizational Context: **LOCKED**
+- Next milestone: **M2 — Current State SSO**
 - Workflow: one milestone at a time; review and lock before proceeding.
 
 ## Core Case

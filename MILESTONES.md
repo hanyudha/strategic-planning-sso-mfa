@@ -32,7 +32,7 @@ Never silently rewrite a locked milestone because of a later idea. If a locked d
 ---
 
 ## M1 — Organizational Context
-**Status: NEXT**
+**Status: LOCKED**
 
 ### Objectives
 Establish factual organizational context before performing strategic analysis.
@@ -56,12 +56,12 @@ Establish factual organizational context before performing strategic analysis.
 - Initial Problem Context
 
 ### Gate
-Do not proceed until organizational facts are sufficiently grounded.
+Locked on 2026-09-21 as an organizational-context baseline. Open evidence gaps are documented in `M1_ORGANIZATIONAL_CONTEXT.md` and carried forward to later milestones where relevant.
 
 ---
 
 ## M2 — Current State SSO
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Collect
 - SSO architecture
@@ -84,7 +84,7 @@ Do not proceed until organizational facts are sufficiently grounded.
 ---
 
 ## M3 — Internal Business Environment
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Analyze
 - Business/service processes affected by authentication
@@ -104,7 +104,7 @@ Use only methods that are justified by the available evidence.
 ---
 
 ## M4 — External Business Environment
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Analyze
 - Regulatory context
@@ -120,7 +120,7 @@ PESTEL, if sufficiently supported.
 ---
 
 ## M5 — Internal IS/IT Environment
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Analyze
 - SSO technology
@@ -134,7 +134,7 @@ PESTEL, if sufficiently supported.
 ---
 
 ## M6 — External IS/IT Environment
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Analyze
 MFA technology landscape without selecting a product prematurely.
@@ -152,7 +152,7 @@ Selection criteria must be derived from organizational requirements.
 ---
 
 ## M7 — SWOT & Strategic Issues
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 ### Outputs
 - SWOT
@@ -165,7 +165,7 @@ MFA must emerge as a strategic response to the evidence, not as an unsupported p
 ---
 
 ## M8 — Gap Analysis
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Compare:
 - Current: SSO without MFA
@@ -184,7 +184,7 @@ Analyze gaps in:
 ---
 
 ## M9 — Strategy Formulation
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Produce:
 - IS Strategy
@@ -196,7 +196,7 @@ Each strategy must trace back to identified gaps and strategic issues.
 ---
 
 ## M10 — Target Architecture
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Produce a conceptual target architecture for SSO + MFA.
 
@@ -205,7 +205,7 @@ Do not over-specify products unless the analysis has justified them.
 ---
 
 ## M11 — Strategic Portfolio
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Use McFarlan Strategic Grid or another justified portfolio approach.
 
@@ -214,7 +214,7 @@ Map existing and proposed applications/capabilities based on documented strategi
 ---
 
 ## M12 — Strategic Initiatives & Roadmap
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Produce:
 - initiatives
@@ -228,7 +228,7 @@ Produce:
 ---
 
 ## M13 — KPI & Strategic Measurement
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Produce measurable strategic indicators covering:
 - MFA adoption
@@ -242,6 +242,6 @@ Produce measurable strategic indicators covering:
 ---
 
 ## M14 — Final Strategic Plan
-**Status: PENDING**
+**Status: LOCKED** (Locked on 2026-09-21)
 
 Integrate all locked outputs into the final academic deliverable.

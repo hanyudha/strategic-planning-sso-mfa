@@ -7,23 +7,37 @@ Act as a research/analysis engineering assistant for the Strategic Planning SSO 
 Produce a defensible Strategic Information Systems / IS-IT Strategic Planning document for an existing university SSO that currently operates without MFA.
 
 ## Current Locked State
-M0 is locked.
+ALL MILESTONES (M0 through M14) ARE LOCKED.
 
 Do not change:
 - case object
 - core problem
 - main framework
 - scope boundary
+- locked M1 organizational-context baseline
+- locked M2 current-state SSO baseline
+- locked M3 internal business environment baseline
+- locked M4 external business environment baseline
+- locked M5 internal IS/IT environment baseline
+- locked M6 external IS/IT environment baseline
+- locked M7 SWOT & strategic issues baseline
+- locked M8 gap analysis baseline
+- locked M9 strategy formulation baseline
+- locked M10 target architecture baseline
+- locked M11 strategic portfolio baseline
+- locked M12 strategic initiatives & roadmap baseline
+- locked M13 KPI & strategic measurement baseline
+- locked M14 final strategic plan deliverable
 
 without an explicit change request from the user.
 
 ## Working Mode
-Proceed one milestone at a time.
+PROJECT COMPLETED & FULLY LOCKED.
 
-Current milestone:
-**M1 — Organizational Context**
+Current status:
+**M14 — Final Strategic Plan (LOCKED)**
 
-Do not automatically execute M2 or later.
+Do not automatically execute M3 or later.
 
 ## Evidence Discipline
 Never fabricate:
@@ -91,13 +105,16 @@ Avoid:
 - unnecessary frameworks
 - duplicate analysis
 
-## M1 Required Output
+## M2 Required Output
 Prepare:
-1. Organizational Profile template
-2. Stakeholder Map template
-3. SSO Service Context template
-4. Evidence Register
-5. Initial Problem Context
-6. List of missing information/questions needed from the user
+1. Current State Architecture
+2. Current State Inventory
+3. Authentication Flow
+4. Account Lifecycle
+5. Administrative Roles
+6. Logging/Auditing Context
+7. Existing Security Controls
+8. Current State Findings
+9. List of missing information/questions needed from the user
 
 Do not invent missing answers.
