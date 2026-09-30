@@ -381,6 +381,25 @@ def create_aism_2col_strategic_plan(output_path):
 
     doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
+    # FIGURE 1: ALUR AUTENTIKASI AS-IS VS TO-BE
+    fig1_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "release", "figures", "fig1_alur_autentikasi_as_is_vs_to_be.jpg")
+    if os.path.exists(fig1_path):
+        p_f1 = doc.add_paragraph()
+        p_f1.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_f1.paragraph_format.space_before = Pt(6)
+        p_f1.paragraph_format.space_after = Pt(2)
+        r_f1_img = p_f1.add_run()
+        r_f1_img.add_picture(fig1_path, width=Inches(3.3))
+        
+        p_f1_cap = doc.add_paragraph()
+        p_f1_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_f1_cap.paragraph_format.space_before = Pt(2)
+        p_f1_cap.paragraph_format.space_after = Pt(6)
+        r_f1_c = p_f1_cap.add_run("Fig. 1. Perbandingan alur autentikasi sebelum (As-Is) dan sesudah (To-Be) penerapan SSO terintegrasi MFA.")
+        r_f1_c.font.name = "Times New Roman"
+        r_f1_c.font.size = Pt(8)
+        r_f1_c.font.italic = True
+
     add_subsec_heading(doc, "E. Formulasi Tiga Pilar Strategi SI/TI")
     add_body_p(doc, "1. Strategi Sistem Informasi (IS Strategy):")
     add_body_p(doc, "   - SI-1: Integrasi Autentikasi Berlapis (MFA Step-Up) pada seluruh 44 klien aplikasi terdaftar di Keycloak.")
@@ -398,6 +417,25 @@ def create_aism_2col_strategic_plan(output_path):
 
     add_subsec_heading(doc, "F. Arsitektur Target Konseptual SSO + MFA")
     add_body_p(doc, "Arsitektur target mengombinasikan perimeter keamanan terpadu di depan klaster Keycloak IdP: Reverse Proxy/WAF -> Authentication Flow Engine dengan Required Actions Pipeline -> Modul TOTP (RFC 6238) & WebAuthn SPI -> Penyimpanan Token Sesi Terenkripsi -> Penerbitan Token OIDC/SAML ke 44 aplikasi klien. Tiga alur utama dirancang: (1) Alur Registrasi Pertama; (2) Alur Login Terproteksi TOTP/WebAuthn; dan (3) Alur Pemulihan Mandiri via Email.")
+
+    # FIGURE 2: ARSITEKTUR INFRASTRUKTUR SSO-MFA
+    fig2_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "release", "figures", "fig2_arsitektur_infrastruktur_sso_mfa.jpg")
+    if os.path.exists(fig2_path):
+        p_f2 = doc.add_paragraph()
+        p_f2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_f2.paragraph_format.space_before = Pt(6)
+        p_f2.paragraph_format.space_after = Pt(2)
+        r_f2_img = p_f2.add_run()
+        r_f2_img.add_picture(fig2_path, width=Inches(3.3))
+        
+        p_f2_cap = doc.add_paragraph()
+        p_f2_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_f2_cap.paragraph_format.space_before = Pt(2)
+        p_f2_cap.paragraph_format.space_after = Pt(6)
+        r_f2_c = p_f2_cap.add_run("Fig. 2. Cetak biru arsitektur infrastruktur konseptual target SSO terintegrasi Multi-Factor Authentication (MFA).")
+        r_f2_c.font.name = "Times New Roman"
+        r_f2_c.font.size = Pt(8)
+        r_f2_c.font.italic = True
 
     add_subsec_heading(doc, "G. Portofolio McFarlan dan Peta Jalan 2026–2028")
     add_body_p(doc, "Berdasarkan McFarlan Strategic Grid, Keycloak SSO Core, Engine MFA (TOTP/WebAuthn), dan Self-Service Portal diposisikan pada kuadran STRATEGIC karena menentukan kelangsungan keamanan operasional universitas di masa depan. Layanan tridharma (eAkademik, eSDM, eFinansi) berada pada kuadran KEY OPERATIONAL.")

@@ -118,6 +118,30 @@ Perbandingan kondisi eksisting (*As-Is*) terhadap kondisi target (*To-Be*) dipet
 | **Helpdesk** | 2.624 tiket manual SMILE | Self-service reset mandiri via email |
 | **Audit Log** | Event Expiration kosong | Retensi log audit terkonfigurasi 180 hari |
 
+![Fig. 1. Perbandingan Alur Autentikasi Sebelum dan Sesudah SSO-MFA](figures/fig1_alur_autentikasi_as_is_vs_to_be.jpg)  
+*Fig. 1. Perbandingan alur autentikasi sebelum (As-Is: faktor tunggal rentan, manual helpdesk) dan sesudah (To-Be: diperkuat TOTP/FIDO2, pemulihan mandiri).*
+
+```mermaid
+flowchart LR
+    subgraph As_Is ["Kondisi Eksisting (As-Is)"]
+        direction TB
+        U1[Pengguna] -->|Input NIM/NIP + Password NIK Default| K1[Keycloak SSO]
+        K1 -->|Validasi Faktor Tunggal\nPassword Policy KOSONG| S1[44 Klien Aplikasi\n(Rentan Phishing)]
+        U1 -.->|Lupa Password| H1[Helpdesk SMILE\n2.624 Tiket Manual]
+    end
+
+    subgraph To_Be ["Kondisi Target (To-Be)"]
+        direction TB
+        U2[Pengguna] -->|Input Password Kuat| K2[Keycloak Cluster]
+        K2 -->|Password Policy Check| M2{Verifikasi Faktor Ke-2}
+        M2 -->|Massal: TOTP 6-Digit| T2[Aplikasi Authenticator]
+        M2 -->|Admin: FIDO2 Token| F2[Hardware Security Key]
+        T2 -->|Token OIDC/SAML Issued| S2[44 Klien Terproteksi]
+        F2 -->|Token OIDC/SAML Issued| S2
+        U2 -.->|Lupa Password| R2[Self-Service Recovery\nReset Mandiri via Email]
+    end
+```
+
 ### E. Formulasi Tiga Pilar Strategi SI/TI
 1. **Strategi Sistem Informasi (IS Strategy)**:
    * **SI-1**: Integrasi Autentikasi Berlapis (MFA Step-Up) pada seluruh 44 klien aplikasi terdaftar di Keycloak.
@@ -136,6 +160,55 @@ Perbandingan kondisi eksisting (*As-Is*) terhadap kondisi target (*To-Be*) dipet
 ### F. Arsitektur Target Konseptual SSO + MFA
 Arsitektur target mengombinasikan perimeter keamanan terpadu di depan klaster Keycloak IdP:
 $$\text{User} \longrightarrow \text{Reverse Proxy/WAF} \longrightarrow \text{Keycloak Authentication Flow} \longrightarrow \text{TOTP / WebAuthn Engine} \longrightarrow 44\text{ Klien Aplikasi}$$
+
+![Fig. 2. Cetak Biru Arsitektur Infrastruktur Konseptual Target SSO-MFA](figures/fig2_arsitektur_infrastruktur_sso_mfa.jpg)  
+*Fig. 2. Cetak biru arsitektur infrastruktur konseptual target SSO terintegrasi Multi-Factor Authentication (MFA).*
+
+```mermaid
+graph TD
+    subgraph Layer1 [1. Lapisan Pengguna / User Access]
+        MHS[Mahasiswa 42.088]
+        DOS[Dosen 1.593]
+        TDK[Tenaga Kependidikan 1.438]
+        ADM[Admin Privileged]
+    end
+
+    subgraph Layer2 [2. Perimeter Keamanan]
+        WAF[Web Application Firewall]
+        RP[Nginx Reverse Proxy / Load Balancer TLS 1.3]
+    end
+
+    subgraph Layer3 [3. Klaster Keycloak IdP - Realm SSOUIN]
+        PPE[Password Policy Enforcer]
+        RAP[Required Action Pipeline]
+        TOTP[Engine TOTP RFC 6238\nMassal Mahasiswa/Dosen]
+        FIDO[Engine FIDO2/WebAuthn\nAdmin Privileged]
+        LOG[Audit Log Engine\nRetensi 180 Hari]
+    end
+
+    subgraph Layer4 [4. Sumber Data & Federasi]
+        ESDM[(eSDM REST API User Federation\nSync Real-time)]
+        EAKD[(eAkademik Database\nMigrasi Lokal JPA)]
+    end
+
+    subgraph Layer5 [5. Lapisan Aplikasi Terintegrasi 44 Clients]
+        APP1[Portal Akademik eAkademik]
+        APP2[LMS e-Learning Moodle]
+        APP3[Kepegawaian eSDM & eKinerja]
+        APP4[Keuangan eFinansi & Pembayaran]
+        APP5[Wi-Fi SSO Kampus Radius/Captive]
+    end
+
+    MHS & DOS & TDK -->|BYOD Mobile/Laptop| RP
+    ADM -->|Hardware Token USB/NFC| RP
+    RP --> WAF
+    WAF --> PPE
+    PPE --> RAP
+    RAP --> TOTP & FIDO
+    TOTP & FIDO --> LOG
+    TOTP & FIDO <--> ESDM & EAKD
+    TOTP & FIDO -->|OIDC / SAML 2.0 Token| APP1 & APP2 & APP3 & APP4 & APP5
+```
 
 Tiga alur utama dirancang:
 1. **Alur Registrasi Pertama**: Pengguna login awal $\rightarrow$ Wajib ubah password $\rightarrow$ Verifikasi email $\rightarrow$ Scan QR TOTP $\rightarrow$ Cetak Backup Codes.
